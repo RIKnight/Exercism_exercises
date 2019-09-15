@@ -1,25 +1,21 @@
 #!/usr/bin/env bash
-# exercism, bash track, two-fer
-# by Z Knight, 2019.09.10
 
-function two_fer {
-  local  __inputvar="$1"
-  local  __resultvar=$2
-  local  start='One for '
-  local  end=', one for me.'
-  local  myresult="$start$__inputvar$end"
-  eval $__resultvar="'$myresult'"
-}
+# Name: two_fer.sh
+# Purpose: exercism, bash track, two-fer
+# Written by Z Knight, 2019.09.10
+#   refactored for simplicity; ZK, 2019.09.15
 
 main () {
-  two_fer "$1" result
+  if [ -z "$1" ]
+    then
+      my_input='you'
+    else my_input="$1"
+  fi
+  start_string='One for '
+  end_string=', one for me.'
+
+  result="$start_string$my_input$end_string"
   echo $result
-  exit
 }
 
-if [ $# -eq 0 ]
-  then
-    my_input='you'
-  else my_input="$1"
-fi
-main "$my_input"
+main "$1"
