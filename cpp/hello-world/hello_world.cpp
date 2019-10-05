@@ -1,6 +1,11 @@
+/* Name:
+ *   hello_world.cpp
+ * Purpose:
+ *   Exercism, cpp track, exercise 1
+ * Modification History:
+ *   Wirtten by Z Knight, 2019.09.07
+ */
 #include "hello_world.h"
-// exercism, cpp track, exercise 1
-// Z Knight, 2019.09.07
 
 // Use everything from the 'std' namespace.
 // This lets us write 'string' instead of 'std::string'.

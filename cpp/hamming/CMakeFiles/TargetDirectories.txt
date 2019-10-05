@@ -1,0 +1,4 @@
+/Volumes/Marshes of Morva/zork/Programming/Exercism/cpp/hamming/CMakeFiles/rebuild_cache.dir
+/Volumes/Marshes of Morva/zork/Programming/Exercism/cpp/hamming/CMakeFiles/edit_cache.dir
+/Volumes/Marshes of Morva/zork/Programming/Exercism/cpp/hamming/CMakeFiles/test_hamming.dir
+/Volumes/Marshes of Morva/zork/Programming/Exercism/cpp/hamming/CMakeFiles/hamming.dir
