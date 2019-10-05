@@ -3,6 +3,7 @@
 # Name: reverse_string.sh
 # Purpose: exercism, bash track, reverse_string
 # Written by Z Knight, 2019.10.05
+#  Modified to "avoid globbing"; ZK 2019.10.05
 
 main () {
   result=""
@@ -11,7 +12,7 @@ main () {
     result="${1:$i:1}$result"
   done
 
-  echo $result
+  echo "$result"
 }
 
 main "$1"
