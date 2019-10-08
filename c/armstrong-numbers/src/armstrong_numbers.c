@@ -5,20 +5,21 @@
 /* Name: armstrong_numbers.c
  * Purpose: exercism, c track, armstrong numbers
  * Written by Z Knight, 2019.09.11
- *   Modified by ZK for smaller memory requirement, 2019.10.01
+ *   Modified for smaller memory requirement; ZK, 2019.10.01
+ *   Modified so function names use underscores; ZK, 2019.10.07
  */
 
-int intPow(int base, int exponent)
+int int_pow(int base, int exponent)
 // works recursively
 // exponent must be >= 1
 {
   if(exponent == 1) {
     return base;
   }
-  return base*intPow(base, exponent-1);
+  return base*int_pow(base, exponent-1);
 }
 
-bool isArmstrongNumber(int input_number)
+bool is_armstrong_number(int input_number)
 {
   int my_digit;
   int reduced_number = input_number;
@@ -38,7 +39,7 @@ bool isArmstrongNumber(int input_number)
   while(reduced_number >= 1) {
     my_digit = reduced_number % 10;
     reduced_number /= 10;
-    partial_sum += intPow(my_digit, num_digits);
+    partial_sum += int_pow(my_digit, num_digits);
   }
   if(partial_sum == input_number) {
     return true;

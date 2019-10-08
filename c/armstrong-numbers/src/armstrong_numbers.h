@@ -2,6 +2,6 @@
 #define ARMSTRONG_NUMBERS
 #include <stdbool.h>
 
-bool isArmstrongNumber(int);
+bool is_armstrong_number(int);
 
 #endif
