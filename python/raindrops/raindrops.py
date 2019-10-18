@@ -6,16 +6,17 @@
         exercism, python track, raindrops
     Written by:
         Z Knight, 2019.10.13
+    Modified to use list appending; ZK, 2019.10.17
 """
 def convert(number):
-    result = ""
+    result = []
     if number % 3 == 0:
-        result += "Pling"
+        result.append("Pling")
     if number % 5 == 0:
-        result += "Plang"
+        result.append("Plang")
     if number % 7 == 0:
-        result += "Plong"
-    if result == "":
+        result.append("Plong")
+    if result == []:
         return str(number)
-    return result
+    return "".join(result)
 
