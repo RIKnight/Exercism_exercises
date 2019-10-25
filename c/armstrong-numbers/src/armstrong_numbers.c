@@ -1,4 +1,5 @@
 #include <stdbool.h> 
+#include <math.h>
 // #include <stdio.h>
 #include "armstrong_numbers.h"
 
@@ -7,17 +8,8 @@
  * Written by Z Knight, 2019.09.11
  *   Modified for smaller memory requirement; ZK, 2019.10.01
  *   Modified so function names use underscores; ZK, 2019.10.07
+ *   Modified to use math.pow; ZK, 2019.10.24
  */
-
-int int_pow(int base, int exponent)
-// works recursively
-// exponent must be >= 1
-{
-  if(exponent == 1) {
-    return base;
-  }
-  return base*int_pow(base, exponent-1);
-}
 
 bool is_armstrong_number(int input_number)
 {
@@ -39,7 +31,7 @@ bool is_armstrong_number(int input_number)
   while(reduced_number >= 1) {
     my_digit = reduced_number % 10;
     reduced_number /= 10;
-    partial_sum += int_pow(my_digit, num_digits);
+    partial_sum += pow(my_digit, num_digits);
   }
   if(partial_sum == input_number) {
     return true;
