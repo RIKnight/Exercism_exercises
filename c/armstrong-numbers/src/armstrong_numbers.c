@@ -9,6 +9,7 @@
  *   Modified for smaller memory requirement; ZK, 2019.10.01
  *   Modified so function names use underscores; ZK, 2019.10.07
  *   Modified to use math.pow; ZK, 2019.10.24
+ *   Modified to use only one return statement; ZK, 2020.03.29
  */
 
 bool is_armstrong_number(int input_number)
@@ -33,8 +34,5 @@ bool is_armstrong_number(int input_number)
     reduced_number /= 10;
     partial_sum += pow(my_digit, num_digits);
   }
-  if(partial_sum == input_number) {
-    return true;
-  }
-  return false;
+  return partial_sum == input_number;
 }
