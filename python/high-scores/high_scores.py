@@ -8,6 +8,7 @@
     Modification History:
         Written by Z Knight, 2019.09.25
         Modified to use sorted(); ZK, 2020.03.29
+        Modified to single-line personal_top_three function; ZK, 2020.04.04
 """
 
 def latest(scores):
@@ -19,10 +20,4 @@ def personal_best(scores):
 
 
 def personal_top_three(scores):
-    my_scores = scores
-    best_scores = []
-    n_scores = min([3,len(scores)])
-    sorted_scores = sorted(scores, reverse=True)
-    best_scores = sorted_scores[:n_scores]
-    return best_scores
-
+    return sorted(scores, reverse=True)[:3]
