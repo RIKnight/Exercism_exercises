@@ -2,9 +2,10 @@
  * Name: clock.js
  * Purpose: exercism, javascript track, clock
  * by Z Knight, 2021.10.13
+ * Modified to use toString().padStart() instead of numeral; ZK, 2021.10.13
  */
 
-var numeral = require('numeral');
+// var numeral = require('numeral');
 
 export class Clock {
   constructor(newHours, newMinutes=0) {
@@ -17,7 +18,8 @@ export class Clock {
   }
 
   toString() {
-    return numeral(this.hours).format('00')+":"+numeral(this.minutes).format('00');
+    //return numeral(this.hours).format('00')+":"+numeral(this.minutes).format('00');
+    return this.hours.toString().padStart(2, '0')+":"+this.minutes.toString().padStart(2, '0');
   }
 
   plus(newMinutes) {
