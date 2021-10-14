@@ -4,7 +4,7 @@
     Name:
         saddle_points.py
     Purpose:
-        exercism, python track, saddle pointss: 
+        exercism, python track, saddle points: 
             Detect saddle points in a matrix.
     Written by:
         Z Knight, 2020.09.18
@@ -15,25 +15,38 @@ def saddle_points(matrix):
     Output: list of points; list of ordered (x,y) pairs, where each ordered pair is a length 2 list.
         In python: list[y][x]; use x for the first index; x is the column coordinate, y is the row
     """
-    row_maxima_indices = []
-    column_maxima_indices = []
+    # find matrix dimensions
+    n_rows = len(matrix)
+    n_cols = len(matrix[0])
+    for row in matrix:
+        if len(row) != n_cols:
+            # throw an error
+            pass
+
+    # set up for finding max/min locations
+    row_maxima_indices = []     # the column index of the max from each row
+    column_minima_indices = []  # the row index of the min from each column
+    
+    # start with the first row for all column minima
+    column_minima = matrix[0]
+    for column in matrix[0]:
+        column_minima_indices.append(0)
+    
     for row_index, row in enumerate(matrix):
-        row_max = row[0]
-        row_max_index = 0
-        column_maximum_values = row[0]
-        column_maximum_indices = {{{list of 0s}}}  # look this up
-        
+        # get the row min, max:
+        row_maxima_indices.append(row.index(max(row)))
+    
+        # continue search for column min, max:
         for column_index, value in enumerate(row):
-            if value > row_max:
-                row_max = value
-                row_max_index = column_index
-            if value < column_maximum_values[column_index]:
-                column_maximum_values[column_index] = value
-                column_maximum_indices[column_index] = row_index
-        row_maxima_indices.append(row_max_index)
+            if value < column_minima[column_index]:
+                column_minima[column_index] = value
+                column_minima_indices[column_index] = row_index
 
     # stitch them together
-    # do the column maxima line up with the row maxima?
-    
+    # do the column maxima line up with the row minima?
+    output_indices_list = []
+    for column_index, column_min_row_index in enumerate(column_minima_indices):
+        if row_maxima_indices[column_min_row_index] == column_index:
+            output_indices_list.append([column_index, column_min_row_index])
 
-    return row_maxima_indices, column_maxima_indices
+    return output_indices_list
