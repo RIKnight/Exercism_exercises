@@ -14,16 +14,18 @@
 def saddle_points(matrix):
     """
     Input: matrix.
-    Output: list of points; list of ordered (x,y) pairs, where each ordered pair is a length 2 list.
-        In python: list[y][x]; use x for the first index; x is the column coordinate, y is the row
+    Output: list of points; list of ordered (x,y) pairs, where each ordered pair is a dictionary:
+        {"row":row,"column":column}, and the row and column numbers are indexed starting with 1
     """
-    # find matrix dimensions
-    n_rows = len(matrix)
+    # catch empty matrix
+    if matrix == []:
+        return []
+
+    # check for rectangular matrix
     n_cols = len(matrix[0])
     for row in matrix:
         if len(row) != n_cols:
-            # throw an error
-            pass
+            raise ValueError(".+")
 
     # set up for finding max/min locations
     row_maxima_indices = []     # the column index(es) of the max(s) from each row
@@ -37,14 +39,12 @@ def saddle_points(matrix):
     
     for row_index, row in enumerate(matrix):
         # create a list to catch multiple row maxima
-        print(f"row: {row}")
         row_maxima_list = []
         row_max = max(row)
         for col_index, col in enumerate(row):
             if col == row_max:
                 row_maxima_list.append(col_index)
         row_maxima_indices.append(row_maxima_list)
-        print(f"row maxima list: {row_maxima_list}")
 
         # continue search for column minima:
         for column_index, value in enumerate(row):
@@ -56,8 +56,9 @@ def saddle_points(matrix):
                 # multiple minima in column
                 column_minima_indices[column_index].append(row_index)
 
-    print(f"column min indices: {column_minima_indices}")
-    print(f"row max indices: {row_maxima_indices}")
+    ## print(f"column min indices: {column_minima_indices}")
+    ## print(f"row max indices: {row_maxima_indices}")
+    
     # stitch them together
     # do the column maxima line up with the row minima?
     output_indices_list = []
