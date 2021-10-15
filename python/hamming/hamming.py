@@ -7,6 +7,7 @@
             Calculate the Hamming Distance between two DNA strands.
     Written by:
         Z Knight, 2020.09.11
+    Modified to use zip instead of enumerate; ZK, 2021.10.15
 """
 def distance(strand_a, strand_b):
     """
@@ -22,8 +23,12 @@ def distance(strand_a, strand_b):
 
     # check each character
     distance = 0
-    for strand_index, protein in enumerate(strand_a):
-        if protein != strand_b[strand_index]:
+    #for strand_index, protein in enumerate(strand_a):
+    #    if protein != strand_b[strand_index]:
+    #        distance +=1
+    pairs = zip(strand_a, strand_b)
+    for pair in pairs:
+        if pair[0] != pair[1]:
             distance +=1
     return distance
 
