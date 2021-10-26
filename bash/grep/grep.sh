@@ -56,33 +56,33 @@ main () {
         ;;
         esac
     done
+    # drop the leading flags from argument list
+    shift $((OPTIND - 1))
     
-    # trim off the command line switches
-    # echo "Args: " $@
-    args=("$@")
-    for (( word_counter=0; word_counter<$#; word_counter++ )); do
-        # echo "arg ${word_counter}: ${args[word_counter]}"
-        if [[ ${args[word_counter]:0:1} == "-" ]]; then
-            shift  # shifts the array of arguments; dropping the leading arg
-        fi
-    done
-    # echo "Args: " $@
-    args=("$@")
+    ### trim off the command line switches
+    ### echo "Args: " $@
+    ##args=("$@")
+    ##for (( word_counter=0; word_counter<$#; word_counter++ )); do
+    ##    # echo "arg ${word_counter}: ${args[word_counter]}"
+    ##    if [[ ${args[word_counter]:0:1} == "-" ]]; then
+    ##        shift  # shifts the array of arguments; dropping the leading arg
+    ##    fi
+    ##done
+    ### echo "Args: " $@
+    ##args=("$@")
     
     # get the search string
     to_find=$1
     # echo $to_find
-    if [[ $match_case_insensitive == 1 ]]; then
-        shopt -s nocasematch
-    fi
-
+    
     # loop through the file
     line_counter=0
     while IFS= read -r line; do
         let line_counter=$line_counter+1
         # printf '%s\n' "$line"
         if [[ $only_match_entire_lines == 1 ]]; then
-            if [[ $line == $to_find ]] || ( ! [[ $line == $to_find ]] && [[ $invert_program == 1 ]] ); then
+            if (   [[ $line == $to_find ]] && [[ $invert_program == 0 ]] ) || 
+               ( ! [[ $line == $to_find ]] && [[ $invert_program == 1 ]] ); then
                 if [[ $print_only_file_names == 1 ]]; then
                     echo $2
                 else  # print the line, not the file name
@@ -94,10 +94,8 @@ main () {
                 fi
             fi
         else  # look for match within each line
-            if ! [[ $line =~ $to_find ]] && [[ $invert_program == 1 ]]; then
-                echo "In the if block."
-            fi
-            if [[ $line =~ $to_find ]] || ( ! [[ $line =~ $to_find ]] && [[ $invert_program == 1 ]] ); then
+            if (   [[ $line =~ $to_find ]] && [[ $invert_program == 0 ]] ) || 
+               ( ! [[ $line =~ $to_find ]] && [[ $invert_program == 1 ]] ); then
                 if [[ $print_only_file_names == 1 ]]; then
                     echo $2
                 else  # print the line, not the file name
