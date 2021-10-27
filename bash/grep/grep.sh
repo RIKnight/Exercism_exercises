@@ -16,6 +16,7 @@
 #
 # Written by Z Knight, 2021.10.21
 # Fixed logic error; ZK, 2021.10.26
+# Added support for multiple files; ZK, 2021.10.27
 #
 
 main () {
@@ -60,25 +61,38 @@ main () {
     else
         to_find=$1
     fi
+    shift
     
-    # loop through the file
-    line_counter=0
-    while IFS= read -r line; do
-        let line_counter=$line_counter+1
-        # printf '%s\n' "$line"
-        if (   [[ $line =~ $to_find ]] && [[ $invert_program == 0 ]] ) || 
-           ( ! [[ $line =~ $to_find ]] && [[ $invert_program == 1 ]] ); then
-            if [[ $print_only_file_names == 1 ]]; then
-                echo $2
-            else  # print the line, not the file name
-                if [[ $print_line_numbers == 1 ]]; then
-                    printf '%s:%s\n' "$line_counter" "$line"
-                else
-                    printf '%s\n' "$line"
+    # loop through file list
+    num_files="$#"
+    for filename in "$@"
+    do
+        # loop through the file
+        line_counter=0
+        file_name_printed=0
+        while IFS= read -r line; do
+            let line_counter=$line_counter+1
+            # printf '%s\n' "$line"
+            if (   [[ $line =~ $to_find ]] && [[ $invert_program == 0 ]] ) || 
+            ( ! [[ $line =~ $to_find ]] && [[ $invert_program == 1 ]] ); then
+                if [[ $print_only_file_names == 1 ]]; then
+                    if [[ $file_name_printed == 0 ]]; then
+                        echo $filename
+                        file_name_printed=1
+                    fi
+                else  # print the line, not just the file name
+                    to_print=$line
+                    if [[ $print_line_numbers == 1 ]]; then
+                        to_print=$line_counter":"$to_print
+                    fi
+                    if [[ $num_files > 1 ]]; then
+                        to_print=$filename":"$to_print
+                    fi
+                    echo $to_print
                 fi
             fi
-        fi
-    done < $2
+        done < $filename
+    done
 }
 
 main "$@"
