@@ -71,8 +71,8 @@ main () {
         # loop through the file
         line_counter=0
         while IFS= read -r line; do
-            let line_counter=$line_counter+1
             # printf '%s\n' "$line"
+            (( line_counter++ ))
             if {   [[ $line =~ $to_find ]] && [[ $invert_program -eq 0 ]]; } || 
             { ! [[ $line =~ $to_find ]] && [[ $invert_program -eq 1 ]]; }; then
                 if [[ $print_only_file_names -eq 1 ]]; then
