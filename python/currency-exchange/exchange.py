@@ -5,14 +5,10 @@
     Purpose:
         exercism, python track, exchange: 
             Currency exchange calculator for "my friend Chandler"
-    Note:
-        This program has not passed all of the unit tests.  
-        I suspect that whomever wrote the unit tests either incorrectly implmented
-            the application of the "spread", or whomever wrote the README.md
-            which describes this problem does not know how to calculate percentage.
-        The readme suggests that 1.0/1.2*(1-90/100) = 1/1.32, but it is closer to 1/1.33.
     Written by:
         Z Knight, 2021.11.03
+    Modified to fix errors caused by terrible description of "spread" in 
+        the readme that describes the exercise; ZK, 2021.11.03
 """
 
 def exchange_money(budget, exchange_rate):
@@ -69,7 +65,7 @@ def exchangeable_value(budget, exchange_rate, spread, denomination):
     :return: int - maximum value you can get.
     """
 
-    max_exchange = exchange_money(budget, exchange_rate) * (1-spread/100)
+    max_exchange = exchange_money(budget, exchange_rate) / (1+spread/100)
     num_bills = get_number_of_bills(max_exchange, denomination)
     return int(num_bills * denomination)
 
@@ -84,5 +80,5 @@ def non_exchangeable_value(budget, exchange_rate, spread, denomination):
     :return: int non-exchangeable value.
     """
 
-    max_exchange = exchange_money(budget, exchange_rate) * (1-spread/100)
-    return max_exchange - exchangeable_value(budget, exchange_rate, spread, denomination)
+    max_exchange = exchange_money(budget, exchange_rate) / (1+spread/100)
+    return int( max_exchange - exchangeable_value(budget, exchange_rate, spread, denomination))
