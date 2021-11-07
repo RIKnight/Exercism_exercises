@@ -1,5 +1,5 @@
 #include "vendor/unity.h"
-#include "../src/darts.h"
+#include "../darts.h"
 
 void setUp(void)
 {
