@@ -2,4 +2,5 @@ exercism_source
 javascript/*/node_modules*
 python/*/__pycache__*
 python/__pycache__*
+cpp/*/build*
 .DS_Store

@@ -1,4 +1,0 @@
-/Volumes/Marshes of Morva/zork/Programming/Exercism/cpp/hello-world/CMakeFiles/rebuild_cache.dir
-/Volumes/Marshes of Morva/zork/Programming/Exercism/cpp/hello-world/CMakeFiles/edit_cache.dir
-/Volumes/Marshes of Morva/zork/Programming/Exercism/cpp/hello-world/CMakeFiles/test_hello-world.dir
-/Volumes/Marshes of Morva/zork/Programming/Exercism/cpp/hello-world/CMakeFiles/hello-world.dir
